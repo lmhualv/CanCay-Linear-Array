@@ -1,0 +1,143 @@
+
+(module SO14 (layer F.Cu) (tedit 5E99219F)
+  (descr "<b>14-Lead Narrow-Body SOIC</b> (SO-14)<p>Source: http://www.analog.com/static/imported-files/data_sheets/SSM2166.pdf")
+  (fp_text reference REF** (at -5.718185 -1.270715 900) (layer F.SilkS)
+    (effects (font (size 1.00055905512 1.00055905512) (thickness 0.015)))
+  )
+  (fp_text value SO14 (at -1.27083 1.99999999995e-06 0) (layer F.Fab)
+    (effects (font (size 1.00064566929 1.00064566929) (thickness 0.015)))
+  )
+  (fp_line (start 4.305 -1.9) (end 4.305 1.4) (layer F.SilkS) (width 0.2032))
+  (fp_line (start 4.305 1.4) (end 4.305 1.9) (layer F.SilkS) (width 0.2032))
+  (fp_line (start 4.305 1.9) (end -4.305 1.9) (layer F.Fab) (width 0.2032))
+  (fp_line (start -4.305 1.9) (end -4.305 1.4) (layer F.SilkS) (width 0.2032))
+  (fp_line (start -4.305 1.4) (end -4.305 -1.9) (layer F.SilkS) (width 0.2032))
+  (fp_line (start -4.305 -1.9) (end 4.305 -1.9) (layer F.Fab) (width 0.2032))
+  (fp_line (start 4.305 1.4) (end -4.305 1.4) (layer F.Fab) (width 0.2032))
+  (fp_poly
+    (pts
+      (xy -4.0565 2.0)
+      (xy -3.5649 2.0)
+      (xy -3.5649 3.10117)
+      (xy -4.0565 3.10117)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -2.7888 2.0)
+      (xy -2.2949 2.0)
+      (xy -2.2949 3.10422)
+      (xy -2.7888 3.10422)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -1.51656 2.0)
+      (xy -1.0249 2.0)
+      (xy -1.0249 3.10308)
+      (xy -1.51656 3.10308)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -0.245363 2.0)
+      (xy 0.2451 2.0)
+      (xy 0.2451 3.10342)
+      (xy -0.245363 3.10342)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 1.02576 2.0)
+      (xy 1.5151 2.0)
+      (xy 1.5151 3.10261)
+      (xy 1.02576 3.10261)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 2.295 2.0)
+      (xy 2.7851 2.0)
+      (xy 2.7851 3.10013)
+      (xy 2.295 3.10013)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 3.56524 2.0)
+      (xy 4.0551 2.0)
+      (xy 4.0551 3.1003)
+      (xy 3.56524 3.1003)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 3.57016 -3.1001)
+      (xy 4.0551 -3.1001)
+      (xy 4.0551 -2.00295)
+      (xy 3.57016 -2.00295)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 2.29699 -3.1001)
+      (xy 2.7851 -3.1001)
+      (xy 2.7851 -2.00182)
+      (xy 2.29699 -2.00182)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 1.02614 -3.1001)
+      (xy 1.5151 -3.1001)
+      (xy 1.5151 -2.00242)
+      (xy 1.02614 -2.00242)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -0.245405 -3.1001)
+      (xy 0.2451 -3.1001)
+      (xy 0.2451 -2.00249)
+      (xy -0.245405 -2.00249)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -1.5165 -3.1001)
+      (xy -1.0249 -3.1001)
+      (xy -1.0249 -2.00185)
+      (xy -1.5165 -2.00185)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -2.79006 -3.1001)
+      (xy -2.2949 -3.1001)
+      (xy -2.2949 -2.00356)
+      (xy -2.79006 -2.00356)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -4.06217 -3.1001)
+      (xy -3.5649 -3.1001)
+      (xy -3.5649 -2.00348)
+      (xy -4.06217 -2.00348)
+    ) (layer F.Fab) (width 0.01)
+  )
+  (pad 2 smd rect (at -2.54 2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 7 smd rect (at 3.81 2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 1 smd rect (at -3.81 2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 3 smd rect (at -1.27 2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 4 smd rect (at 0.0 2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 8 smd rect (at 3.81 -2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 6 smd rect (at 2.54 2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 5 smd rect (at 1.27 2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 9 smd rect (at 2.54 -2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 10 smd rect (at 1.27 -2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 11 smd rect (at 0.0 -2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 12 smd rect (at -1.27 -2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 13 smd rect (at -2.54 -2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+  (pad 14 smd rect (at -3.81 -2.6) (size 0.6 2.2) (layers F.Cu F.Mask F.Paste))
+)

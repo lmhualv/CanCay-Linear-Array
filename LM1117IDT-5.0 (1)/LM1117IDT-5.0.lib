@@ -1,0 +1,28 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# LM1117IDT-5.0
+#
+DEF LM1117IDT-5.0 U 0 40 Y Y 1 L N
+F0 "U" -182 257 50 H V L BNN
+F1 "LM1117IDT-5.0" -252 -508 50 H V L BNN
+F2 "TO228P970X238-3N" 0 0 50 H I L BNN
+F3 "LM1117IDT-5.0" 0 0 50 H I L BNN
+F4 "-" 0 0 50 H I L BNN
+F5 "41K3439" 0 0 50 H I L BNN
+F6 "TO-252-3" 0 0 50 H I L BNN
+F7 "National Semiconductor" 0 0 50 H I L BNN
+DRAW
+P 2 0 0 16 -600 200 -600 -400 N
+P 2 0 0 16 -600 -400 600 -400 N
+P 2 0 0 16 600 -400 600 200 N
+P 2 0 0 16 600 200 -600 200 N
+X ADJ_/_GND 1 -800 0 200 R 40 40 0 0 W 
+X VIN 3 -800 -200 200 R 40 40 0 0 I 
+X VOUT 2 800 -200 200 L 40 40 0 0 O 
+ENDDRAW
+ENDDEF
+#
+# End Library

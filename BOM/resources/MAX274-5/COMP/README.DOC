@@ -1,0 +1,74 @@
+
+***************************************************************************
+*               WELCOME TO THE MAXIM FILTER DESIGN SOFTWARE               *
+***************************************************************************
+
+The file contains information about errors in the software and literature.
+It also contains a software user's registration form at the end of the file. 
+We strongly suggest that you print this file, fill out the form, and mail 
+it back to us at:
+
+                   Filter Software Registration
+                   c/o Steve Leandro
+                   Maxim Integrated Products
+                   120 San Gabriel Drive
+                   Sunnyvale, CA  94086   USA
+
+IF YOU SEND US THIS FORM YOU WILL AUTOMATICALLY RECEIVE ALL SOFTWARE UPDATES
+IN THE FUTURE. 
+
+
+*******************************  ERRATA ***********************************
+
+--DATA SHEET--
+
+Page, Item:		Error:
+
+MAX274 DATA SHEET       Pin 5 incorrectly labelled as "V-", connected to 
+Page 6, Figure 1        -5V. Pin 5 should be labelled "V+", and connected
+                        to +5V.
+
+MAX274 DATA SHEET       Pin 17 incorrectly labelled "V+", connected to
+Page 6, Figure 1        +5V. Pin 17 should be labelled "V-", and connected
+              		to -5V.
+
+MAX275 DATA SHEET	Usable Center Frequency, Q Range extends to 300kHz.
+Page 9, Figure 4        (Figure 4 shows range extending to 150kHz). 
+                        Filter Qs of up to 10 are realizable at 300kHz for 
+                        the MAX275.
+                         
+MAX274 DATA SHEET   	Chip topography is in error. Contact Factory
+Page 20, "Chip 		for correct topography.
+Topography"
+
+
+
+------------------------------------------------------------------------
+
+
+******** MAXIM FILTER SOFTWARE USER'S REGISTRATION FORM ****************
+
+ 
+Name: _____________________________________________________________
+
+Company: __________________________________________________________
+
+Address: __________________________________________________________
+
+         __________________________________________________________
+
+         __________________________________________________________
+
+
+
+-------------------------------------------------------------------------
+
+Send to:   Filter Software Registration
+	   c/o Steve Leandro
+	   Maxim Integrated Products
+           120 San Gabriel Drive
+           Sunnyvale, CA   94086     USA
+ 
+
+
+*************************************************************************

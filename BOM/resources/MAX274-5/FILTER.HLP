@@ -1,0 +1,820 @@
+        WELCOME TO MAXIM'S FILTER DESIGN SOFTWARE PROGRAM!
+
+This is the main menu. The first two selections are the two basic steps for 
+designing your filter. 
+
+The first step, "Determine poles/Qs/Zeroes based on filter requirements," 
+calculates the numerical coefficients that characterize your filter- the 
+poles (Fo), Qs, and zeroes (if applicable). You will enter information 
+regarding the type of filter (lowpass, bandpass, highpass, notch) as well 
+as specifications for which frequencies are to be passed and filtered out 
+(and to what degree). The simple spreadsheet format will help you decide 
+which type of classic filter- Butterworth, Bessel, Chebyshev, or Elliptic- 
+best suites your needs. The program calculates the poles, Qs and zeroes for 
+each of the second-order sections which make the filter and used later in 
+the second (Implementation) part of the program. 
+
+The second step, "Implement filter in Hardware (MAX274/MAX275)", uses the 
+pole/Q information generated from the previous step  to design a working 
+filter in hardware with the MAX274 or MAX275. The program allows you to set 
+the gains and reorder the second-order sections which make up your filter 
+to maximize dynamic range and prevent signal clipping. This section 
+ultimately calculates all resistor values and provides a schematic for the 
+MAX274 or MAX275 circuit. 
+
+If you already have pole/Q information, proceed directly to the "Implement 
+filter in Hardware (MAX274/MAX275)" step, and manually enter the poles 
+(Fo)/Qs section by section.
+
+
+The third selection, "Configure printer" allows you to select the printer 
+type for text and graphics hardcopy outputs. The program can be configured 
+to use only those printers for which you have installed drivers with the 
+installation program. For additional printer choices, perform the 
+installation procedure once again, adding the printer drivers you need.
+
+
+Finally: You are not alone! Maxim applications engineers are available to 
+help you if you run into any problems while designing your filters. For help
+in the USA call 408-737-7600, extension 4000. Elsewhere, contact your 
+Maxim representative.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+*             DETERMINE POLES,QS,ZEROES QUICK REFERENCE                  *
+**************************************************************************
+
+KEY               FUNCTION
+----------------  --------------------------------------------------------
+                  Use these keys to move around the screen, "spreadsheet 
+[ARROWS,HOME,END] style" to enter filter parameters.
+
+[P]ole List       Displays poles and zeroes of selected filter (Butterworth,
+                  Bessel, Chebyshev, or Elliptic).
+
+[W]rite to file   Two choices: 
+
+                  "Response File" writes an ASCII file of the 
+                  calculated frequency response- gain, phase or delay- of
+                  the desired filter, in an "X-Y" format. This is useful if 
+                  you use a separate plotting program not supplied with
+                  this software. 
+
+                  "Description File" writes an ASCII file containing
+                  information about your file- order, poles, Qs, zeroes.
+
+
+[T]oggle Display  (Bandpass and Notch filters only). Toggles between two
+                  ways of defining passband and stopband. See on-screen
+                  diagram- or for more help refer to "General Filter Design
+                  Procedure" later in this help screen.
+
+[V]iew graph      Plots filter responses- gain, phase, delay- of any 
+                  combination of the four filters.
+
+[ESC]             Quit this part of the program, return to main menu.
+                  Your filters will NOT be lost, as long as you do not
+                  exit the program to DOS.
+
+The remainder of this help screen is divided into two sections: 
+
+1) QUICK-LOOK DESIGN PROCEDURE provides step-by-step instructions for 
+designing the filter.
+
+2) AVOIDING "UNREASONABLE" FILTER DESIGNS warns against common pitfalls of 
+filter design- recommended reading!
+
+3) DETAILED DESIGN PROCEDURE provides an overview on the overall filter 
+design process.
+
+
+**************************************************************************
+*                    QUICK LOOK DESIGN PROCEDURE                         *
+**************************************************************************
+
+Your goal is to design a filter which meets your requirements- for passband 
+ripple (Amax) and stopband attenuation (Amin)- with the minimum amount of 
+hardware possible (lowest order). 
+
+The most common way to proceed is: 
+
+(1) Select Lowpass, Bandpass, Highpass, or Notch.
+
+(2) Choose Amax. For a Butterworth or Bessel filter, use 3dB.
+
+(3) For a lowpass or highpass- choose Fc and Fs. If you aren't sure about
+what frequency you want to define as Fs, choose a frequency (say, twice Fc) 
+at which you want to check the filter responses (remember Fs > Fc for 
+lowpass filters, Fs < Fc for highpass filters). At least, the numbers the 
+program calculates for Amin under each filter will give you a good 
+comparison between the four basic filters- and you can always plot out the 
+response to see the whole picture (select [V]iew graph).
+
+For bandpas or notch- press the [T]oggle key and observe the two
+different ways of entering the frequency data. In most cases, the Fbw-, 
+Fbw+, Fsw-, Fsw+ mode is easiest, because it allows you to choose the 
+actual frequency bounds of the passband and stopband- the alternate mode 
+requires you to choose bandwidths around a center frequency. When using 
+Fbw-...Fsw+ mode, enter the numbers from left to right, abiding by the 
+common sense rules that Fsw- < Fbw- < Fbw+ < Fsw+ (for a bandpass filter) 
+and Fbw- < Fsw- < Fsw+ < Fbw+ (for a notch filter). After you have entered 
+these frequencies, you can flip back to the Fbw / Fsw mode  by selecting 
+[T]oggle, if desired.
+
+(4) Now you have two choices: 
+
+   (A) Enter a value in the "Order" field under one of the four filters- to 
+see what kind of attenuation can be achieved with a given amount of 
+hardware. This will produce a new "Amin" value for that filter, and define 
+Amin at the top of the screen. The other three filters will show updated 
+values for Order and Amin- these represent the mimumum amount of hardware 
+required for that filter to meet or exceed Amin shown at the top of the 
+screen.
+
+   (B) Enter a value for Amin at the top of the screen. All four filters 
+below will show updated values for Order and Amin- representing the minimum 
+amount of hardware required to meet or exceed Amin at the top of the 
+screen.
+
+(5) Go back to adjust Fc, Fs, (or passband and stopband) Amax, Amin; 
+compare responses ([V]iew graph); consider the various filter types, their 
+responses (gain as well as phase and delay) and hardware tradeoffs (order). 
+Check poles and Qs by selecting [P]ole list (see "What is a Reasonable 
+Filter", below). Filter design is an iterative process. 
+
+(6) When you are satisfied with a filter design, you may choose to [W]rite 
+a Description file (see "Quick Reference" section). Hit [ESC] to return to 
+the opening menu- your filter design will be saved as long as you remain in 
+the program. Select "Implement Filter In Hardware" to proceed to the next 
+step.
+
+
+
+**************************************************************************
+*                AVOIDING "UNREASONABLE" FILTER DESIGNS                  *
+**************************************************************************
+
+Beware! "Determine Poles/Qs/Zeroes.." section of the program allows you to 
+design any filter which is mathematically possible (so long as the order is 
+less than 20). By avoiding some common pitfalls you can avoid the pains of
+designing a filter which cannot be built in real-world hardware.
+
+If you will be using the MAX274 and MAX275 to implement your filters in 
+hardware, remember you cannot build Highpass and Notch filters. 
+Additionally, Elliptic filters are not supported because they contain 
+zeroes in the transfer function (many of these filters CAN be built using 
+the MAX260-MAX268 series of switched-capacitor filters- contact your Maxim 
+representative for more information). Finally, this software does not allow 
+odd-order filter implementations in hardware- since real poles require 
+high-tolerance external capacitors. If your design is odd-order, simply 
+step up the order by one.
+
+Pole frequencies (Fo) and Qs for the individual filter sections must remain 
+"within bounds." These bounds are loosely defined in the MAX274 and MAX275 
+data sheets in Figure 4- Usable Center Frequency, Q Range. Sections with Qs 
+above 50 are difficult to stabilize; Fo above 150kHz (MAX274) or 300kHz 
+(MAX275) exhibit large deviations as you approach the bandwidth limitations 
+of the internal amplifiers. Sections with Fo less than about 100Hz are 
+difficult to build because of the large values of external resistors 
+required. Be aware of these limits while you are designing the filters- 
+that is, observe the poles and Qs of your filters by using the [P]ole List 
+function frequently!
+
+Overly high Qs frequently come from overly high expectations. Since the Qs 
+of your filter sections are approximately proportional to their steepness 
+(or, the narrowness of the passbandwidth of a bandpass filter), you may 
+have to increase the filter order, decrease the passband ripple, or shoot 
+for a lower Amin-  in order to reduce the Qs.
+
+Obviously incorrect data entries will cause "***********" to appear under 
+the filter fields. Inspect the screen for something "obviously wrong" - 
+such as Amax > Amin, or overlapping passband and stopband. 
+
+Finally, a note about odd-order filters. MAX274 and MAX275 hardware supports
+pole pairs- odd order filters would require an external resistor and good
+tolerance capacitor. Our suggestion is- if an odd-order filter meets your 
+filetr requirements, increase the order by one to make an even-ordered
+section, and use a MAX274 /MAX275 section. It will save you from using 
+external components.
+
+
+**************************************************************************
+*                   DETAILED DESIGN PROCEDURE                           *
+**************************************************************************
+
+                           INTRODUCTION
+
+This screen is the first step toward designing your filter. You'll be on 
+your way very soon!
+
+This part of the program allows you to enter some basic information about 
+your filter requirements- regarding the type of filter (lowpass, bandpass, 
+highpass, notch) as well as your specifications describing which 
+frequencies are to be passed by the filter and which must be filtered out 
+(and to what degree). The program then generates four "classic" filter 
+types (Butterworth, Bessel, Chebyshev, and Elliptic) which conform to your 
+specifications. Displayed under each heading is the minimum "Order" 
+required to meet your criteria (a measure of how much hardware will be 
+needed to implement your filter), as well as an indication of the filter's 
+steepness - the attenuation ("Amin") achieved at a certain frequency which 
+you designate ("Fs") (for bandpass and notch filters "Fs" is replaced by 
+two frequencies, "Fsw- and Fsw+"- or a stopband described as "Fsw" around a 
+center frequency, "Fc"). The higher the order of the filter, the steeper 
+the filter will be. In hardware, a fourth-order filter translates to one 
+MAX275 with at least 8 resistors; an 8th-order filter translates to one 
+
+MAX274 (or two MAX275s) with at least 16 resistors. Your task in designing 
+your filter is to satisfy your filter requirements- which frequencies must 
+be passed and which must be attenuated, and by how much- while minimizing 
+the amount of hardware used.
+
+This design screen functions "spreadsheet style"- that is, you move the 
+cursor around by using the arrow keys; any change you make in your filter 
+specifications (changing the amount of passband ripple, Amax, for example) 
+recalculates all four filter types below, indicating a new "order" and 
+updated attenuation "Amin". You can limit the order of any filter by 
+entering a value in the "Order" field of one of the filters, working 
+"backwards" to see how much attenuation is possible with a given amount of 
+hardware.  At any time, you may view a plot of the filter- gain, phase or 
+delay vs frequency- by selecting the [V]iew graph option. Any combination 
+of the four filters may be viewed simultaneously for comparison, and the 
+results may be printed on your graphics printer. When you are satisfied 
+with your filter design, the program calculates the numerical coefficients 
+that characterize it-these are the poles (sometimes referred to as "Fo"), 
+Qs, and zeroes (if applicable). To view this information select [P]ole 
+List. These numbers mathematically describe your filter, and will be used 
+by other parts of the program to implement your design in hardware. 
+
+
+An important note: As mentioned in "Avoiding Unreasonable Filter Designs", 
+the MAX274 and MAX275 cannot implement filters which have zeroes; nor can 
+highpass filters be accomodated. Therefore highpass- and notch-type filters 
+designed in the first part of the program cannot be implemented with the 
+MAX274 or MAX275 using the second part of the program. Additionally, 
+elliptic filters (which have zeroes) cannot be implemented. Many of these 
+filter types can be implemented by our switched-capacitor filters- the 
+MAX260-MAX268. For further information about these and other Maxim filter 
+products, contact Maxim or your Maxim representative.
+
+
+                           FILTER TYPES 
+
+The first step in a filter design is to determine the what basic type of 
+filtering you require. There are four types of filters you can design with 
+this program: Lowpass, Bandpass, Highpass, and Notch. The characteristics 
+of each are as follows:
+
+Type          Description                            Can it be implemented
+----------    ------------------------------------   ----------------------
+Lowpass       Allows low frequencies to pass,        Yes
+              gets rid of (attenuates) higher 
+              frequencies.
+
+Bandpass      Allows a single band of frequencies    Yes
+              to pass, attenuates all other 
+              frequencies.
+
+Highpass      Allows high frequencies to pass,       No. Try our switched-
+              attenuates lower frequencies.          capacitor filters: 
+                                                     MAX260-MAX266.
+
+Notch (or     Attenuates a single band of            No. Try MAX260-MAX268.
+"Bandreject") frequencies, passes all others.
+
+
+To enter your desired filter type, place the cursor on "Type", hit 
+[RETURN]. Then select filter type desired, then hit [RETURN].
+
+
+
+                        FREQUENCY AND ATTENUATION 
+
+Your filter design needs some defined frequency points- the outer limits of 
+a frequency band to be passed, for example. Or, a frequency above which you 
+require at least 40dB of rejection, as another example. These frequency 
+points and corresponding attenuation specs are defined as follows:
+
+
+  IN A LOWPASS OR HIGHPASS FILTER:
+
+FC:
+Fc = "cutoff frequency"; in a lowpass filter, frequencies above Fc are 
+attenuated- the "stopband"- while frequencies below Fc are within the 
+filter's "passband" and are allowed to pass. In a highpass filter, the 
+passband is defined as all frequencies above Fc. 
+
+AMAX: 
+To define what we mean to "pass" a frequency, another parameter is 
+required. This is "Amax", the maximum allowable passband ripple. Passband 
+ripple is the amount of gain deviation allowed for frequencies in the 
+passband. An example: for a Butterworth lowpass filter, the passband is 
+flat- all frequencies are passed from input to output without attenuation 
+(or, with a fixed gain)- for frequencies much less than Fc. Near Fc, 
+however, the response begins to roll off (attenuation increases), until Fc 
+is reached, at which the gain has fallen to -3dB (At higher frequencies the 
+attenuation increases rapidly, depending on the filter order). In this case 
+Amax= 3dB. Another example: Chebyshev filters exhibit "ripple" in their 
+passband- that is, the passband is not flat but varies according to 
+frequency. Amax defines the amplitude of the ripple. Fc is the frequency at 
+which the response rolls off below the ripple amplitude. 
+
+
+FS:
+Fs = "Stopband frequency"; defines the frequency edge of the stopband, at 
+which a certain minimum attenuation (Amin) is required (see diagram on 
+screen). Usually you choose Fs as the frequency at which you absolutely 
+need, say, 50dB of attenuation to reduce unwanted frequencies below the 
+threshold of your circuit's ability to detect them. 
+
+Note that the frequencies you enter for Fs must be greater than Fc when 
+designing a lowpass filter; Fs must be less than Fc for a highpass.
+Otherwise, the program enters "*******" under each of the four filter 
+designs (Butterworth, Bessel, Chebyshev, Elliptic) to show that the 
+frequencies entered are in error.
+
+AMIN:
+Amin is the amount of attenuation you need at Fs, as described above.
+
+
+  IN A BANDPASS OR NOTCH FILTER:
+
+FC,AMAX,AMIN:
+
+Fc = "center frequency"; the center frequency of both the passband and 
+stopband in a bandpass or notch (bandreject) filter. Fc is centered between 
+the limits of these bands only when the frequencies are on a log scale. To 
+understand this concept more clearly, look at the graphical representation 
+shown on the screen.  
+
+Passband and stopband are defined the same way as in lowpass and highpass 
+filters, with Amax and Amin defining passband ripple and stopband 
+attenuation. The difference here is that passband and stopband require two 
+frequencies each to define their bounds. These frequencies may be defined 
+in two ways, depending on which "display mode" the program is set. The 
+display mode is set by selecting the [T]oggle display option. 
+
+
+FBW, FSW MODE:
+
+FBW and FSW set frequency bands centered around Fc - bands to be passed 
+(Fbw) and those to be attenuated (Fsw). For bandpass filters the passband 
+is "centered" around Fc on a logarithmic frequency scale (for notch 
+filters the stopband is centered around Fc). For a notch filter, Fbw > Fsw; 
+for a bandpass, Fsw > Fbw; if you do not satisfy this requirement the 
+program places "*******" under Butterworth, Bessel, Chebyshev and Elliptic 
+filters.  The on-screen graphical representation provides a quick look at 
+how these bands are defined. 
+
+FBW-, FBW+, FSW-, FSW+ MODE:
+
+Instead of entering bandwidths around the center frequency, this mode 
+allows you to enter four frequencies which define the edges of the passband 
+and stopband. The program then calculates Fc. 
+
+When in this mode, enter the frequency values in order, from left to right. 
+
+
+
+
+
+                    FOUR BASIC FILTERS
+
+The filter designer displays four filters designs simultaneously- 
+Butterworth, Bessel, Chebyshev, and Elliptic. While more than one of these 
+may satisfy your filter requirements (i.e. produce the desired amount of 
+attenuation in the stopband while passing frequencies in the passband), 
+there are important differences between them which are summarized below:
+
+Filter:        Steepness*:    Passband:                Phase/DC Response/
+-------------  -------------  -----------------------  --------------------
+Butterworth    3              Flat. Set Amax to 3dB.   2
+
+Bessel         4              Flat, gets droopy        1
+                              near passband edge
+                              
+Chebyshev      2              Ripple in passband,      3
+                              specify as Amax. Larger
+                              Amax gives steeper 
+                              filter for given order.
+
+Elliptic       1              Ripple in passband,      4
+                              specify as Amax. Larger
+                              Amax gives steeper
+                              filter for given order.
+
+* For a given order, Butterworth, Bessel and Chebyshev filters ultimately 
+achieve the same rate of gain rolloff (steepness) in the stopband- 
+20dB/order for lowpass and highpass (10dB/order for bandpass and notch)- as 
+a Bode plot would show. However, for frequencies near the edge of the 
+passband (near Fc, in the case of lowpass and highpass filters), the rate 
+of rolloff varies signifigantly. The filter steepness at these transition 
+frequencies is usually very important, because it determines how fast 
+attenuation can be achieved just outside of the passband- how close we can 
+get to the ideal "brick wall" filter with infinite attenuation at 
+frequencies outside the passband. For comparison the filters are ranked 
+from most steep (1) to least steep (4) in this transition area. Elliptics 
+are a special class of filters which have extremely sharp transition 
+regions because of zeroes in their transfer functions, and therefore are 
+ranked highest. For a quick comparison, plot the lowpass responses of the 
+four filters, each with the same order and Fc. 
+
+
+** For given order, Fc and passbandwidth, filters are ranked from fastest 
+to slowest settling time (least to most overshoot) in response to DC step. 
+This time-domain view of filters is often overlooked, but may be very 
+important. For example, in a system in which several signals are 
+multiplexed and then fed to your filter, changing the multiplexer channel 
+sends the new signal to your filter- and a "step" as well. The magnitude of 
+the step depends on the voltage difference between the two channels when 
+the channel is switched. The filter's DC settling time and overshoot are a 
+function of the filter order and its phase response. The Bessel filter has 
+a nearly linear phase response (phase varies linearly with frequency, 
+throughout the passband), and as a result exhibits minimal step-response 
+ringing and fast settling time. The other, steeper filters, 
+
+In some applications, the phase response of the filter may be critical. For 
+example, audio circuitry aims to maintain the same amount of delay (a 
+direct function of phase response) from signal input to output, regardless 
+of frequency. The result is a clear, unmuddied sound. Constant delay 
+(sometimes called group delay) is also required in modem signal detection 
+applications as well, where several bandpass filters detect the presence of 
+signalling tones. The tones are sequential, so difference in time delay 
+between different filters cannt be tolerated. A filter with linear phase- 
+the Bessel filter- has the constant group delay characteristic. All signals 
+within the passband, regardless of frequency, will pass with a certain 
+constant delay. The program allows you to plot this delay for inspection. 
+
+With a little familiarity with the different filter types and definitions, 
+you should now be prepared to return to the "Quick Look Design" section and 
+design your filter.
+
+
+
+
+**************************************************************************
+*           QUICK REFERENCE FOR IMPLEMENT SCREEN                         *
+**************************************************************************
+
+[L]oad filter from design section:  Loads Butterworth, Bessel, or Chebyshev 
+  filters from "Determine Poles, Qs and Zeroes" part of program. 
+
+[INS]ert a new section: Loads an individual 2nd-order filter section. 
+  Prompts for Fo, Q and LP/BP output pin selection.
+
+[DEL]ete current section: Delete selected (highlighted) filter section.
+
+[M]ove current section: Move selected (highlighted) section to new location 
+  (use arrow keys).
+
+[F]o change: current section: Change Fo for selected (highlighted) section. 
+  Warning: by changing Fo of any section you are altering the shape of the 
+  entire cascaded filter.
+
+[Q] change: current section: Change Q of selected (highlighted) section. 
+  Warning: By changing Q of any section you are altering the shape of the 
+  entire cascaded filter.
+
+
+[O]utput pin change: current section: Change output pin for selected 
+  (higlighted) section- LP or BP. Warning: for normal filter applications, 
+  all section outputs must all be set to either LP or BP.
+
+[R]esistor selection: Calculate resistor values required to build selected 
+  (highlighted) section.
+
+[ALT-G]: Set gain: current section: Force a gain at output of selected 
+  (highlighted) section. Note this is NOT the gain of just the selected 
+  section- it is the cumulative gain of all preceding cascaded sections 
+  PLUS the gain of the selected section, measured at the output of the 
+  selected section (gains are referred to circuit INPUT). However, 
+  adjusting this gain affects the selected section gain ONLY. Increasing 
+  this gain setting by 1dB, for example, increases the selected section' s 
+  gain by 1dB, and results in an overall increase in circuit OUTPUT gain 
+  (see [CTL-G]) by 1dB. Gain is measured at the frequency set by [ALT-F].
+  
+[ALT-F]: Change the frequency at which the gain is measured for cascaded 
+  sections. 
+
+[CTL-G] Set circuit OUTPUT gain: Force a gain at the overall OUTPUT of the 
+  filter, at the frequency specified (gains are referred to circuit INPUT). 
+  Warning: This function alters the gains of all individual cascaded 
+  sections, such that each section contributes an equal amount of gain to 
+  the overall filter circuit. [CTL-G] should be used only once, as the 
+  first step in this program, to set all section gains equal.
+
+[CTL-F] Set circuit OUTPUT frequency: Change the frequency at which the 
+  gain is measured for circuit OUTPUT.
+
+[U]nits: dB or V/V: toggle between dB and V/V as units for gains.
+
+[V]iew graph of responses: Select up to 12 responses to view 
+  simultaneously. Display is of cumulative responses of cascaded sections, up 
+  to and including the selected section (responses are referred to circuit 
+  INPUT).
+
+[P]rint circuit information: Print ASCII report with gain and cascaded 
+  filter information.
+
+[ESC] Return to main menu: Return to opening menu. Changes made on this 
+screen will NOT be lost, as long as you do not exit the program to DOS.
+ 
+
+
+Press [PGDN] or [ARROW KEYS] to get to step-by-step instructions; or 
+press [ESC] to exit help.
+
+
+
+
+**************************************************************************
+*                   FILTER HARDWARE IMPLEMENTATION                       *
+**************************************************************************
+
+This part of the program takes your filter design, from the "Determine 
+Poles, Qs, Zeroes..", and translates it into a working filter circuit using 
+the MAX274 and/or MAX275 filter ICs (or, you may manually load filter 
+sections by entering poles/Qs). Each filter "box" on the screen represents 
+one second-order filter section (each defined by one Fo/Q combination); the 
+sections are cascaded (connected in series) to yield the overall desired 
+response of your filter design. 
+
+In the first step of the hardware implementation, you adjust the gains and 
+the ordering of the individual filter sections to maximize dynamic range 
+(and prevent clipping); then the [R]esistor Selection function calculates 
+the feedback resistor values in the circuit required for each section. When 
+you are finished, you will have a complete filter circuit, ready for 
+hardware prototyping.
+
+
+The following steps outline the basic procedure:
+
+1) [L]oad a filter design from the previous section. The Load menu will 
+ask you which of the filters to retrieve (Butterworth, etc.). The program 
+will not load any filters which (a) have a first-order section (any odd-
+order filter), (b) are highpass, notch or elliptic types, or (c) have Order 
+> 20. You must go back to "Determine Poles, Qs Zeroes.." and redesign the 
+filter in this case- see the help screen from the "Determine Poles, Qs 
+Zeroes.." section, and refer to "Avoiding Unreasonable Filter DEsigns"
+
+If you did not use the previous part of this program to design your filter, 
+you can load filter sections one-by-one manually using [INS]sert a New 
+Section.
+
+2) The program automatically [L]oads filter sections in order from lowest Q 
+to highest Q sections (if you manually loaded sections, lowest-to-highest Q 
+ordering is strongly suggested). Verify the ordering by checking each of 
+the filter sections (to move use the arrow keys). 
+
+3) Set the overall desired circuit OUTPUT gain ([CTL-G]), and the frequency 
+([CTL-F]) at which the gain figure applies. This is the gain of the overall 
+filter, not any individual section. In a lowpass filter, the circuit OUTPUT 
+gain is usually specified at DC (0 Hz); in a bandpass, at Fo. Once entered, 
+the program divides this gain among the cascaded filter sections, so that 
+each section contributes equally. A gain of 8dB in a 4 section filter, for 
+example, would require each section's gain set to 2dB. Note that setting 
+the [U]nits to dB (not V/V) makes cascaded gain calculations easier. 
+
+4) Select [V]iew Graph of Response. View the response of each point along 
+the cascaded filter - each section output - that is, view GAIN for Section 
+1, GAIN for Section 2...GAIN for Section N. The program allows you to view 
+up to 12 items simultaneously. The last section's output will be the 
+desired response of the overall filter- it should look familiar, since you 
+probably viewed it when you designed your filter in the "Determine Poles, 
+Qs, Zeroes.." portion of the program.
+
+It is likely that you will see some peaking at the outputs along the 
+cascaded filters; other points may look "droopy". Peaking, if greater in 
+magnitude than the response peaking of the overall filter, reduces dynamic 
+range of your filter, because the signal passing through that point will
+clip when a large input signal is applied. The input signal must then be 
+limited. Make a note of which sections appear to be causing these effects 
+(and at which frequencies); how gains in the sections may be better 
+
+distributed to avoid signal clipping. Gains from a very "peaky" section may 
+be reduced while gains from a "droopy" section may be increased, so that 
+the overall gain through the filter remains the same. This type of gain 
+optimization is one of the main purposes of this part of the program.
+
+Often rigorous gain optimization is not required, and the lowest-to-highest 
+Q-ordering and equal gain distribution is good enough. In that case, 
+proceed directly to step  7.
+
+5) [ESC] from the graphing screen; adjust the gains of the individual 
+sections by forcing gains at various points using [ALT-G] (use [ALT-F] to 
+set the frequency to the point where the "peakiness" occurred). If you 
+reduce the gain at one section, note that you must increase the gain at 
+another section, to satisfy the circuit OUTPUT desired gain.  Do not use 
+[CTL-G] for any gain adjustments- it will set cascaded gains equal once 
+again. Observe other gains within the filter- clipping at any node, - LP, 
+BP or HP- will cause a distorted OUTPUT signal, regardless of the type of 
+filter (lowpass, bandpass). These nodes may be plotted out as well using 
+the [V]iew Graph function. (The graphing feature assumes the FC pin =GND 
+when plotting the HP node response).
+
+6) Go back, graph again; then readjust the gains to further "tweak" the 
+design. How close to an "optimum" design you achieve is up to you. 
+
+7) Calculate resistor values. For each section, choose [R]esistor 
+selection: current section. For help when on the resistor selection screen, 
+press [F1].
+
+
+
+**************************************************************************
+*             QUICK REFERENCE FOR RESISTOR SCHEMATIC                     *
+**************************************************************************
+
+Choose [D]evice (MAX274/MAX275): Make this section with MAX274 or MAX275.
+
+[F]C pin connection: Change the connection of the FC pin (V+, GND, or V-).
+  Changing the FC pin connection scales resistors R1 and R3 without 
+  changing the Fo/Q characteristics of the filter. Use it to get 
+  "reasonable" values for R1 and R3.
+
+Toggle series/T-Network: R[2], R[3], R[4]: Replace normal resistor 
+  connection with T-Network. T-Networks are used when resistor values
+  exceed 4Mohms, to reduce the overall impedance of the feedback path.
+
+[M]anually set a resistor value: Change a resistor value. Fo and Q WILL 
+  change- you are changing the characteristics of the filter.
+
+Change frequency of Displayed [G]ain: Set frequency at which gains displayed
+  are valid.
+
+[ESC] to cancel (changes will be lost): Returns to main hardware screen, 
+  resistor values, Fc pin connection, other changes not saved.
+
+[RETURN] to proceed with design...: When satisfied with resistor values, 
+  proceed with final resistor adjustments (including standard value 
+  adjustments). Returns to main implementation screen.
+
+
+
+
+Press [PGDN] or [ARROW KEYS] to get step-by-step instructions; or press 
+[ESC] to exit help.
+
+
+
+
+**************************************************************************
+                         RESISTOR SELECTION
+**************************************************************************
+
+The resistor selection screen calculates the values of the four 
+(or more) external resistors required for each section (see "Translating 
+Calculated Pole/Q Pairs into Hardware" in the MAX274 or MAX275 data sheet). 
+The screen shows one MAX274 or MAX275 filter section, with corresponding 
+external resistor connections (R1-R4). The screen also shows the actual 
+Fo/Q and gain of the section based on those resistor values at a frequency 
+you can specify.
+
+Internal resistors RX and RY (compare with MAX274 or MAX275 data sheet, 
+Figure 2) are shown with values which could cause "worst case" peaking at
+the HP node. While the ratio of RX to RY are precisely trimmed on-chip, 
+their actual values vary with temperature and process variations. Worst
+case highest peaking at HP occurs when RX is largest- hence the "worst
+case" values for RX and RY are shown.
+
+The procedure for calculating resistors is as follows:
+
+1) Check for hardware realizability errors: if there is one, the white 
+field with "F2 FOR ERROR HELP" will appear in the upper left corner. Press 
+[F2] and follow the instructions given. For more help on these errors, 
+refer to REALIZABILITY ERRORS section later in this help file.
+
+2) Choose the MAX274 or MAX275 IC using Toggle [D]evice. The MAX274 can 
+implement four filter sections (8th-order), while the MAX275 can implement 
+two. However, the MAX275 allows poles of higher frequency (up to 300kHz, vs 
+150kHz for the MAX274). Remember, the PC board supplied with the MAX274EV
+KIT suports the MAX274 only.
+
+3) Choose the FC pin connection. By pressing [F]C you will see the values 
+of R1 and R3 change as the FC pin connection is changed from V+, GND and 
+V-. The Fo and Q of the filter will not change. The goal is to keep all 
+resistors in the range wherever possible:
+                    
+                      5K < R2,R3,R4 < 4M
+
+The FC pin setting will help to achieve this. Important note: a MAX274 IC 
+has one FC pin connection common to all four sections; therefore choose the 
+same FC connection for all sections on a MAX274 chip.
+
+Again, watch for the white Error Bar to appear -one or more of the 
+switch settings may not be "legal" for your Fo/Q. 
+
+4) If R2,R3 or R4 > 2MOhms, consider converting them to "T-Networks". This 
+method reduces the impedance of the feedback paths, reducing the effects of 
+parasitic capacitances, without affecting the characteristics of the 
+filter. R[2], R[3], and R[4] switches between these normal resistor 
+connections and their T-Network equivalents.
+
+5) When you are satisfied with the resistor values, press [RETURN]. The
+program guides you several final steps:
+
+- Compensate Fo/Q for finite GBW Errors (Y/N) asks whether your resistor
+  values should be adjusted to correct for gain and phase errors stemming
+  from the internal filter amplifiers. These errors are largest at high
+  Fo and Q. It's a good idea to compensate all your filter sections.
+
+  If "ERROR: Parameters beyond specs- unable to compensate" appears, you
+  have reached the limits of the program's ability to adjust your 
+  resistors. Press any key, then return to the resistor screen and try 
+  a different FC pin setting. If the error persists, you can (a) redesign
+  the filter with lower Q/lower Fo sections; or (b) don't compensate, 
+  install the displayed resistor values, and manually adjust their values
+  by measuring Fo/Q with the aid of a spectrum analyser, then referring to 
+  equations in Figure 2 of the data sheet to determine which resistors
+  to adjust.
+
+- Change resistors to use standard 0.1%/1% values. You will notice that 
+  the displayed Fo, Q and gains have changed slightly from the ideal to 
+  reflect the adjusted resistor values.
+
+- Print graphics hardcopy of schematic, if desired (alternatively, write
+  down the resistor values- OR, select [P]rint circuit information from 
+  the Implementation screen when you are through choosing resistors for
+  all the sections.
+
+- Return to Implementation screen.
+
+
+Now you are back in the main hardware implentation screen. When you have 
+gone through this resistor selection procedure for all sections in your 
+filter, you can plot the response of the output taken at the last 
+cascaded section- in this way you will be viewing a close approximation
+of the response you should see in hardware.
+
+
+
+*************************************************************************
+*                      REALIZABILITY ERRORS                             *
+*************************************************************************
+
+During an error condition, the following errors messages may appear 
+when you press [F2]. If the [F2] ERROR! message does not appear on your
+screen, there are no errors. 
+
+
+EXCESSIVE LOAD ON BPO- The loading effects of R3 and R4 together create 
+ excessive loading for the BPO pin (<5kohms). Experimenting with the 
+ FC pin settings may increase R3 and R4 - otherwise, your filter is
+ NOT BUILDABLE- either Fo is too high ( >400kHz ) or Q is too low. In
+ this case you must redesign the filter (return to "Determine Poles,Qs
+ Zeroes.." part of program). Refer to Figure 4 in the MAX274 data sheet,
+ where Usable Fo, Q range is shown.
+
+EXCESSIVE LOAD ON LPO- The loading effect of R2 creates excessive loading
+ for the LPO pin (<5kohms). Experimenting with the 
+ FC pin settings may increase R2 - otherwise, your filter is
+ NOT BUILDABLE- Fo is too high ( >400kHz ). In this case you must redesign 
+ the filter (return to "Determine Poles,Qs Zeroes.." part of program). 
+ Refer to Figure 4 in the MAX274 data sheet, where Usable Fo, Q range 
+ is shown.
+           
+R1 LOADING PREVIOUS SECTION- The value of R1 is less than 5kOhms. Try 
+ experimenting with the FC pin settings- otherwise [ESC] to implementation
+ screen and reduce this section's gain- or make this the first section
+ in the cascaded filter, and drive its input with a source which can 
+ drive the load R1.
+
+Q COMPENSATION ERRORS > 50% - Q is too high at this Fo; the GBW of the 
+ internal amplifiers has been exceeded. Try a different Fc pin setting, 
+ or the higher-bandwidth MAX275 (note the hardware part of the EVKIT does
+ not support the MAx275). In some cases you can try to "manually" tune the
+ filter by using the resistor values shown and measuring
+ the Fo and Q obtained- then adjusting the resistor values to try and 
+ compensate for the errors. Otherwise, a lower Fo/Q combination is required.
+ You must redesign the filter (return to "Determine Poles, Qs, Zeroes.."). 
+ Refer to Figure 4 in the MAX274 data sheet, where Usable Fo , Q range is 
+ shown.
+
+FO COMPENSATION ERRORS > 50% - FO is too high at this Q; the GBW of the 
+ internal amplifiers has been exceeded. Try a different Fc pin setting, 
+ or the higher-bandwidth MAX275 (note the hardware part of the EVKIT does
+ not support the MAx275). In some cases you can try to "manually" tune the
+ filter by using the resistor values shown and measuring
+ the Fo and Q obtained- then adjusting the resistor values to try and 
+ compensate for the errors. Otherwise, a lower Fo/Q combination is required.
+ You must redesign the filter (return to "Determine Poles, Qs, Zeroes.."). 
+ Refer to Figure 4 in the MAX274 data sheet, where Usable Fo , Q range is 
+ shown.
+
+FO TOO LOW (FO < 100)- CANNOT COMPENSATE - Low FO requires high resistor
+ values. Deviations from expected Fo and Q will be dependent on capacitance
+ across the resistors, and will likely decrease stopband attenuation at 
+ high frequencies. For Fo less than 100 Hz, use T-Networks.

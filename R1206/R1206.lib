@@ -1,0 +1,22 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#
+# R1206
+#
+DEF R1206 R 0 40 N N 1 L N
+F0 "R" -50 100 50 H V L BNN
+F1 "R1206" -100 -150 50 H V L BNN
+F2 "1206" -100 -250 50 H I L BNN
+F3 "" -100 0 60 H I C CNN
+DRAW
+T 0 -190 -50 34 0 0 0 1 Normal 0 L B
+T 0 220 -50 34 0 0 0 2 Normal 0 L B
+P 2 0 0 6 -180 0 -100 0 N
+P 2 0 0 6 230 0 150 0 N
+X 1 1 -180 0 0 R 40 40 0 0 P
+X 2 2 230 0 0 L 40 40 0 0 P
+P 5 0 1 0 -100 0 -50 50 0 -50 100 50 150 0 N
+ENDDRAW
+ENDDEF
+#
+#End Library
